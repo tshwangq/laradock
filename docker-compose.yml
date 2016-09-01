@@ -35,7 +35,7 @@ services:
                 - INSTALL_XDEBUG=false
                 - INSTALL_MONGO=false
                 - INSTALL_ZIP_ARCHIVE=false
-                - INSTALL_MEMCACHED=false
+                - INSTALL_MEMCACHED=true
                 - INSTALL_OPCACHE=false
             dockerfile: Dockerfile-70
         volumes_from:
@@ -44,6 +44,8 @@ services:
             - "9000"
         links:
             - workspace
+            - "mysql:db"
+            - "memcached:cache"
         extra_hosts:
             # IMPORTANT: Replace with your Docker Host IP (will be appended to /etc/hosts)
             - "dockerhost:10.0.75.1"
@@ -63,7 +65,7 @@ services:
         volumes:
             - ./logs/nginx/:/var/log/nginx
         ports:
-            - "80:80"
+            - "1080:80"
             - "443:443"
         links:
             - php-fpm
