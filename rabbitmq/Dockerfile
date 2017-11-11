@@ -1,11 +1,6 @@
-#
-# RabbitMQ Dockerfile
-#
-# https://github.com/dockerfile/rabbitmq
-#
-
-# Pull base image.
 FROM rabbitmq
+
+MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 
 RUN rabbitmq-plugins enable --offline rabbitmq_management
 
